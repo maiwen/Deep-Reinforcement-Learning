@@ -51,4 +51,4 @@ DQN对Q-learning的修改主要体现在以下三个方面：
 DQN的伪代码:
 ![](https://github.com/maiwen/Deep-Reinforcement-Learning/blob/master/DQN/img/Human-level%20control%20through%20deep%20reinforcement%20learning%20(2).png)
 
-*注：本文讲解来源于[《深入浅出强化学习原理入门》](https://book.douban.com/subject/27624485/)
+*注：本文讲解来源于[《深入浅出强化学习原理入门》](https://book.douban.com/subject/27624485/)*
