@@ -31,7 +31,7 @@ ENV_A_SHAPE = 0 if isinstance(env.action_space.sample(), int) else env.action_sp
 class Net(nn.Module):
     def __init__(self,):
         super(Net, self).__init__()
-        # 不是图像的像素输入，所以采取了简单的两层全连接层，而没有卷积层
+        # 不是图像的像素输入，所以没有卷积层而采取了简单的两层全连接层
         self.fc1 = nn.Linear(N_STATES, 50)
         self.fc1.weight.data.normal_(0, 0.1)
         self.fc2 = nn.Linear(50, N_ACTIONS)
