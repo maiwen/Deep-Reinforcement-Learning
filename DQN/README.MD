@@ -49,7 +49,7 @@ DQN对Q-learning的修改主要体现在以下三个方面：
 与表格型的Q-learning算法所不同的是，利用神经网络对值函数进行逼近时，值函数的更新步更新的是参数θ，更新方法是梯度下降法。因此图1.1中第6行值函数更新实际上变成了监督学习的一次更新过程，其梯度下降法为：
 ![](https://www.zhihu.com/equation?tex=%5C%5B%0A%5Ctheta_%7Bt%2B1%7D%3D%5Ctheta_t%2B%5Calpha%5Cleft%5Br%2B%5Cgamma%5Cmax_%7Ba%27%7DQ%5Cleft%28s%27%2Ca%27%3B%5Ctheta%5Cright%29-Q%5Cleft%28s%2Ca%3B%5Ctheta%5Cright%29%5Cright%5D%5Cnabla+Q%5Cleft%28s%2Ca%3B%5Ctheta%5Cright%29%0A%5C%5D)
 
-我们称计算TD目标时所用的网络为TD网络。以往的神经网络逼近值函数时，计算TD目标的动作值函数所用的网络参数θ，与梯度计算中要逼近的值函数所用的网络参数相同，这样就容易使得数据间存在关联性，训练不稳定。为了解决这个问题，DeepMind提出计算TD目标的网络表示为θ-；计算值函数逼近的网络表示为θ ；用于动作值函数逼近的网络每一步都更新，而用于计算TD目标的网络每个固定的步数更新一次。因此值函数的更新变为：
+我们称计算TD目标时所用的网络为TD网络。以往的神经网络逼近值函数时，计算TD目标的动作值函数所用的网络参数θ，与梯度计算中要逼近的值函数所用的网络参数相同，这样就容易使得**数据间存在关联性，训练不稳定**。为了解决这个问题，DeepMind提出计算TD目标的网络表示为θ-；计算值函数逼近的网络表示为θ ；用于动作值函数逼近的网络每一步都更新，而用于计算TD目标的网络每个固定的步数更新一次。因此值函数的更新变为：
 ![](https://www.zhihu.com/equation?tex=%5C%5B%0A%5Ctheta_%7Bt%2B1%7D%3D%5Ctheta_t%2B%5Calpha%5Cleft%5Br%2B%5Cgamma%5Cmax_%7Ba%27%7DQ%5Cleft%28s%27%2Ca%27%3B%5Ctheta%5E-%5Cright%29-Q%5Cleft%28s%2Ca%3B%5Ctheta%5Cright%29%5Cright%5D%5Cnabla+Q%5Cleft%28s%2Ca%3B%5Ctheta%5Cright%29%0A%5C%5D)
 
 DQN的伪代码:
