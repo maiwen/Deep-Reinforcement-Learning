@@ -1,3 +1,5 @@
+使用DQN训练200回合时agent玩[cartpole](https://github.com/openai/gym/wiki/CartPole-v0)的表现：
+
 ![cartpole using DQN](https://github.com/maiwen/Deep-Reinforcement-Learning/blob/master/DQN/img/cartpole.gif)
 
 # DQN
