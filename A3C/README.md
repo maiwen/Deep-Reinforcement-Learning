@@ -23,5 +23,5 @@ Value-Based（或Q-Learning）和Policy-Based（或Policy Gradients）是强化�
 因为复杂环境中难以使用model预测接下来的环境状态，所以传统的DRL都是基于model-free。
 
 ### 1. Value-Based & model-free
-t时刻开始到回合结束时，总回报：
+t时刻开始到回合结束时，总回报：$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$
 $$R_t=\sum_{k=0}^\infty\gamma^k r_{t+k}$$
