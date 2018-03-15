@@ -24,4 +24,4 @@ Value-Based（或Q-Learning）和Policy-Based（或Policy Gradients）是强化�
 
 ### 1. Value-Based & model-free
 t时刻开始到回合结束时，总回报：
-                          $R_t=\sum_{k=0}^\infty\gamma^k r_{t+k}$
+                          $$R_t=\sum_{k=0}^\infty\gamma^k r_{t+k}$$
