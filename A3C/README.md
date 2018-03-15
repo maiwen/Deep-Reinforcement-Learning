@@ -1,3 +1,4 @@
+mathjax: true
 # A3C
 
 ## 经验回放机制的局限
@@ -42,10 +43,12 @@ Value-Based（或Q-Learning）和Policy-Based（或Policy Gradients）是强化�
 
 ### 异步RL框架
 论文共实现了四种异步训练的强化学习算法，分别是one-step Q-learning, one-step Sarsa, n-step Q-learning, and advantage actor-critic（A3C）。
-
+$\nabla_{\theta'}\log{\pi(a_t|s_t;\theta')}A(s_t,a_t;\theta',\theta_v')$
 不同线程的agent，其探索策略不同以保证多样性，不需要经验回放机制，通过各并行agent收集的样本训练降低样本相关性，且学习的速度和线程数大约成线性关系，能适用off-policy、on-policy，离散型、连续型动作。
 #### A3C  
-![](https://latex.codecogs.com/gif.latex?%5Cnabla_%7B%5Ctheta%27%7D%5Clog%7B%5Cpi%28a_t%7Cs_t%3B%5Ctheta%27%29%7DA%28s_t%2Ca_t%3B%5Ctheta%27%2C%5Ctheta_v%27%29)
 ![](http://img.blog.csdn.net/20170613220534373?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzIzNjk0Ng==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+A3C更新公式有两条，一条梯度上升更新策略 π 参数，如前面介绍actor-critic体系结构， 
+![](https://latex.codecogs.com/gif.latex?%5Cnabla_%7B%5Ctheta%27%7D%5Clog%7B%5Cpi%28a_t%7Cs_t%3B%5Ctheta%27%29%7DA%28s_t%2Ca_t%3B%5Ctheta%27%2C%5Ctheta_v%27%29)
+
 
 
