@@ -27,6 +27,7 @@ Value-Based（或Q-Learning）和Policy-Based（或Policy Gradients）是强化�
 
 ### 2. Policy-Based & model-free
 直接将策略参数化: <a href="https://www.codecogs.com/eqnedit.php?latex=\pi(a|s,\theta)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\pi(a|s,\theta)" title="\pi(a|s,\theta)" /></a>
+
 通过迭代更新 θ，使总回报期望 E[Rt] 梯度上升。 
 具体地 
 ![](http://img.blog.csdn.net/20170613213322872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzIzNjk0Ng==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
