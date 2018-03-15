@@ -26,7 +26,7 @@ Value-Based（或Q-Learning）和Policy-Based（或Policy Gradients）是强化�
 参考DQN
 
 ### 2. Policy-Based & model-free
-直接将策略参数化: <a href="https://www.codecogs.com/eqnedit.php?latex=\pi(a|s,\theta)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\pi(a|s,\theta)" title="\pi(a|s,\theta)" /></a>
+直接将策略参数化: π(a|s,θ)
 
 通过迭代更新 θ，使总回报期望 E[Rt] 梯度上升。 
 具体地 
