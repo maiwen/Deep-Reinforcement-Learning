@@ -45,7 +45,9 @@ Value-Based（或Q-Learning）和Policy-Based（或Policy Gradients）是强化�
 不同线程的agent，其探索策略不同以保证多样性，不需要经验回放机制，通过各并行agent收集的样本训练降低样本相关性，且学习的速度和线程数大约成线性关系，能适用off-policy、on-policy，离散型、连续型动作。
 
 #### A3C  
-![](http://img.blog.csdn.net/20170613220534373?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzIzNjk0Ng==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](https://github.com/maiwen/Deep-Reinforcement-Learning/blob/master/A3C/img/Asynchronous%20Methods%20for%20Deep%20Reinforcement%20Learning%20(1).png)
+
+![](https://github.com/maiwen/Deep-Reinforcement-Learning/blob/master/A3C/img/Asynchronous%20Methods%20for%20Deep%20Reinforcement%20Learning.png)
 
 
 
