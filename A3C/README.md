@@ -23,4 +23,18 @@ Value-Based（或Q-Learning）和Policy-Based（或Policy Gradients）是强化�
 因为复杂环境中难以使用model预测接下来的环境状态，所以传统的DRL都是基于model-free。
 
 ### 1. Value-Based & model-free
-t时刻开始到回合结束时，总回报：<a href="https://www.codecogs.com/eqnedit.php?latex=R_t=\sum_{k=0}^\infty\gamma^k&space;r_{t&plus;k}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?R_t=\sum_{k=0}^\infty\gamma^k&space;r_{t&plus;k}" title="R_t=\sum_{k=0}^\infty\gamma^k r_{t+k}" /></a>
+参考DQN
+
+### 2. Policy-Based & model-free
+直接将策略参数化: <a href="https://www.codecogs.com/eqnedit.php?latex=\pi(a|s,\theta)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\pi(a|s,\theta)" title="\pi(a|s,\theta)" /></a>
+通过迭代更新 θ，使总回报期望 E[Rt] 梯度上升。 
+具体地 
+![](http://img.blog.csdn.net/20170613213322872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzIzNjk0Ng==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+①中，π(at|st;θ)表示在 st,θ 的情况下选择动作 at 的概率。概率的对数乘以该动作的总回报 Rt，对 θ 求梯度，以梯度上升的方式更新 θ 。该公式的意义在于，回报越高的动作越努力提高它出现的概率。
+
+但是某些情形下，每个动作的总回报 Rt 都不为负，那么所有的梯度值都大于等于0，此时每个动作出现的概率都会提高，这在很大程度下减缓了学习的速度，而且也会使梯度的方差很大。因此需要对 Rt 使用某种标准化操作来降低梯度的方差。
+
+②具体地，可以让 Rt 减去一个基线 b（baseline），b 通常设为 Rt 的一个期望估计，通过求梯度更新 θ，总回报超过基线的动作的概率会提高，反之则降低，同时还可以降低梯度方差（证明略）。这种方式被叫做行动者-评论家（actor-critic）体系结构，其中策略 π 是行动者，基线 bt 是评论家。
+
+③在实际中，Rt−bt(st) 可使用动作优势函数 Aπ(at,st)=Qπ(at,st)−Vπ(st)代替，因为 Rt 可以视为 Qπ(at,st) 的估计，基线 bt(st) 视为 Vπ(st) 的估计。
