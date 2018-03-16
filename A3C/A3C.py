@@ -73,7 +73,53 @@ class worker(mp.Process):
         self.env = gym.make('Pendulum-v0').unwrapped
 
     def run(self):
-        pass
+        total_step = 1
+        while self.g_ep.value < MAX_EP:
+            s = self.env.reset()
+            buffer_s, buffer_a, buffer_r = [], [], []
+            ep_r = 0
+            for t in range(MAX_EP_STEP):
+                if self.name == 'worker0':
+                    self.env.render()
+                a = self.lnet.choose_action(v_wrap(s[None, :]))
+                s_, r, done, info = self.env.step(a.clip(-2, 2))
+                if t == MAX_EP_STEP - 1:
+                    done = True
+                ep_r += r
+                buffer_a.append(a)
+                buffer_s.append(s)
+                buffer_r.append((r + 8.1) / 8.1)  # normalize
+                if total_step % UPDATE_GLOBAL_ITER == 0 or done:
+                    push_and_pull(self.opt, self.lnet, self.gnet, done, s_, buffer_s, buffer_a, buffer_r, GAMMA)
+                    buffer_s, buffer_a, buffer_r = [], [], []
+                    if done:
+                        record(self.g_ep, self.g_ep_r, ep_r, self.res_queue, self.name)
+                        break
+                s = s_
+                total_step += 1
+        self.res_queue.put(None)
 
+if __name__ == "__main__":
+    gnet = Net(N_S, N_A)
+    gnet.share_memory()
+    opt = SharedAdam(gnet.parameters(), lr=0.0002)
+    global_ep, global_ep_r, res_queue = mp.Value('i', 0), mp.Value('d', 0.), mp.Queue()
 
-        
+    workers = [worker(gnet, opt, global_ep, global_ep_r, res_queue, i) for i in range(mp.cpu_count())]
+    [w.start() for w in workers]
+    res = []
+    res = []  # record episode reward to plot
+    while True:
+        r = res_queue.get()
+        if r is not None:
+            res.append(r)
+        else:
+            break
+    [w.join() for w in workers]
+    import matplotlib.pyplot as plt
+
+    plt.plot(res)
+    plt.ylabel('Moving average ep reward')
+    plt.xlabel('Step')
+    plt.show()
+
