@@ -2,6 +2,10 @@
 """
 Created on Thu Apr 26 19:16:25 2018
 
+borrowed from ShangtongZhang
+has some questions
+waiting for implementing fully
+
 @author: vincent
 """
 
