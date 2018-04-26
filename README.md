@@ -4,7 +4,7 @@ Implementing algorithms:
 * Deep Q learning
 * Async Advantage Actor Critic(A3C)
 * Deep Deterministic Policy Gradient (DDPG)
-* Synchronous Proximal Policy Optimization (PPO)
+* Proximal Policy Optimization (PPO)
 * Actor Critic using Kronecker-Factored Trust Region(ACKTR)
 * [World Models](https://worldmodels.github.io/)
 
